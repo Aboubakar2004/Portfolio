@@ -44,7 +44,9 @@
         <a href="https://www.linkedin.com/in/aboubakar-bamba-5b2279274/"><i class="bx bxl-linkedin-square"></i></a>
         <a href="https://github.com/Aboubakar2004?tab=repositories"><i class="bx bxl-github"></i></a>
       </div>
+      <a href="images/CV Développeur Full Stack  (2).pdf" class="btn" download>Télécharger le CV</a>
     </div>
+
     <div class="home-img">
       <img src="images/Aboubaakar tete (1).png" alt="" class="image" />
     </div>
@@ -272,7 +274,7 @@ if (isset($_POST['ok'])) {
 
         $req->execute();
 
-        echo '<script>alert("Message envoyé avec succès !");</script>';
+        echo '<script>alert("Message envoyé !");</script>';
     } catch (PDOException $e) {
         die('Erreur lors de l\'exécution de la requête : ' . $e->getMessage());
     }
