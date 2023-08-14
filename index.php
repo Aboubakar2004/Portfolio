@@ -41,12 +41,10 @@
         Hetic et je suis actuellement à la recherche d'une alternance
       </p>
       <div class="social-media">
-        <a href="#"><i class="bx bxl-linkedin-square"></i></a>
-        <a href="#"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/aboubakar-bamba-5b2279274/"><i class="bx bxl-linkedin-square"></i></a>
+        <a href="https://github.com/Aboubakar2004?tab=repositories"><i class="bx bxl-github"></i></a>
       </div>
-      <a href="#" class="btn">Télécharger le CV</a>
     </div>
-
     <div class="home-img">
       <img src="images/Aboubaakar tete (1).png" alt="" class="image" />
     </div>
@@ -169,7 +167,7 @@
           <p>
             Catalogue de film avec l'api de The movie database en React.js
           </p>
-          <a href="#"><i class="bx bx-link-external"></i></a>
+          <a href="https://thegreatestcatalog.netlify.app/"><i class="bx bx-link-external"></i></a>
         </div>
       </div>
 
@@ -178,7 +176,7 @@
         <div class="portfolio-layer">
           <h4>Développement web</h4>
           <p>Home-page d'un site HTML , CSS</p>
-          <a href="#"><i class="bx bx-link-external"></i></a>
+          <a href="https://cute-dieffenbachia-165966.netlify.app/"><i class="bx bx-link-external"></i></a>
         </div>
       </div>
     </div>
@@ -198,7 +196,6 @@
         <input type="text" placeholder="Objet" name="subject" />
       </div>
       <textarea
-        name=""
         id=""
         cols="30"
         rows="10"
@@ -245,34 +242,40 @@
 <?php
 try {
   $bdd = new PDO(
-    'mysql:host=localhost;dbname=database_portfolio;charset=utf8',
-    'root',
-    'root'
+      'mysql:host=localhost;dbname=database_portfolio;charset=utf8',
+      'root',
+      'root'
   );
 } catch (PDOException $e) {
   die('Erreur : ' . $e->getMessage());
 }
 
+
 if (isset($_POST['ok'])) {
-  $username = $_POST['name'];
-  $email = $_POST['email'];
-  $phone_number = $_POST['phone_number'];
-  $subject = $_POST['subject'];
-  $message = $_POST['message'];
+    $username = $_POST['name'];
+    $email = $_POST['email'];
+    $phone_number = $_POST['phone_number'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message']; 
 
-  $req = $bdd->prepare(
-    'INSERT INTO messages (nom, email, telephone, objet, user_message)
-     VALUES (:username, :email, :phone_number, :subject, :message)'
-  );
+    try {
+        $req = $bdd->prepare(
+            'INSERT INTO portfolio_information (nom, email, telephone, objet, user_message)
+             VALUES (:username, :email, :phone_number, :subject, :message)'
+        );
 
-  $req->bindParam(':username', $username);
-  $req->bindParam(':email', $email);
-  $req->bindParam(':phone_number', $phone_number);
-  $req->bindParam(':subject', $subject);
-  $req->bindParam(':message', $message);
+        $req->bindParam(':username', $username);
+        $req->bindParam(':email', $email);
+        $req->bindParam(':phone_number', $phone_number);
+        $req->bindParam(':subject', $subject);
+        $req->bindParam(':message', $message); 
 
-  $req->execute();
+        $req->execute();
 
-  echo '<script>alert("Message envoyé !");</script>';
+        echo '<script>alert("Message envoyé avec succès !");</script>';
+    } catch (PDOException $e) {
+        die('Erreur lors de l\'exécution de la requête : ' . $e->getMessage());
+    }
 }
 ?>
+

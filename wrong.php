@@ -1,1 +1,0 @@
-<h1>INSERTION RATE</h1>
